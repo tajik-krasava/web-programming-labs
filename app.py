@@ -1,4 +1,4 @@
-from flask import Flask, redirect
+from flask import Flask, redirect, url_for
 app = Flask(__name__)
 
 @app.route("/")
@@ -59,3 +59,15 @@ Werkzeug, а также шаблонизатор Jinja2. Относится к �
     </body>
 </html>
 """
+@app.route("/lab1/oak")
+def oak():
+    return '''
+<!doctype html>
+<html>
+    <body> 
+      <h1>Дуб</h1>
+      <img src="''' + url_for('static', filename='oak.jpg') + '''">
+      <link rel="stylesheet" href="''' + url_for('static', filename='lab1.css') + '''">  
+    </body>
+</html>
+'''
