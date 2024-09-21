@@ -172,3 +172,7 @@ def example():
                            expression1=11*28, 
                            expression2=8452/793, 
                            expression3=45**8)
+
+@app.route('/lab2/')
+def lab():
+    return render_template('lab2.html')
