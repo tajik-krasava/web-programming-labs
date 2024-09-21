@@ -144,4 +144,4 @@ def lab1python():
 
 @app.route('/lab2/example')
 def example():
-    return render_template('example.html')
+    return render_template('example.html', name='Богачев Игорь')
