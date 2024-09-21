@@ -151,8 +151,20 @@ def example():
                {'name': 'мандарины', 'price': 95},
                {'name': 'манго', 'price': 321}
                ]
+    books = [{'name': 'Джейн Эйр', 'genre': 'роман', 'pages': 630},
+             {'name': '451 градус по Фаренгейту', 'genre': 'роман-антиутопия', 'pages': 256},
+             {'name': 'Хоббит, или Туда и обратно', 'genre': 'повесть', 'pages': 320},
+             {'name': 'Маленькие женщины', 'genre': 'роман', 'pages': 883},
+             {'name': 'Паутина Шаролтты', 'genre': 'детская книга', 'pages': 240},
+             {'name': 'Великий Гэтсби', 'genre': 'роман', 'pages': 256},
+             {'name': '1984', 'genre': 'роман-антиутопия', 'pages': 328},
+             {'name': 'Дневник Анны Франк', 'genre': 'дневник', 'pages': 512},
+             {'name': 'Гордость и предубеждение', 'genre': 'роман', 'pages': 567},
+             {'name': 'Убить пересмешника', 'genre': 'роман', 'pages': 374}
+             ]
     return render_template('example.html',  
                            fruits = fruits,
+                           books = books,
                            name = name,
                            lab = lab,
                            group = group,
