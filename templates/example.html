@@ -14,7 +14,12 @@
     <main>
         11x28 = {{expression1}} <br>
         8452/793 = {{expression2}} <br>
-        45**8 = {{expression3}} 
+        45**8 = {{expression3}} <br>
+        <ul>
+            {% for f in fruits %}
+            <li>{{ f.name }}: {{ f.price }} &#x20bd;</li>
+            {% endfor %}
+        </ul>
     </main>
 
     <footer>
@@ -24,9 +29,9 @@
         {% else %}
             Анонимус,
         {% endif %}    
-        {{group}}, 
-        {{year}}, 
-        2023
+        {{ group }}, 
+        {{ course }}
+        2024
     </footer>
 </body>
 </html>

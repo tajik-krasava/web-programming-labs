@@ -35,7 +35,7 @@ Werkzeug, а также шаблонизатор Jinja2. Относится к �
         <li><a href="/lab1/python">lab1/python - python</a></li>
     </ul>
         <footer>
-            &copy; Игорь Богачев, ФБИ-23, 3 курс, 2023
+            &copy; Игорь Богачев, ФБИ-23, 3 курс, 2024
         </footer>
     </body>
 </html>
@@ -70,7 +70,7 @@ Werkzeug, а также шаблонизатор Jinja2. Относится к �
         <li><a href="/lab1/python">lab1/python - python</a></li>
     </ul>
         <footer>
-            &copy; Игорь Богачев, ФБИ-23, 3 курс, 2023
+            &copy; Игорь Богачев, ФБИ-23, 3 курс, 2024
         </footer>
     </body>
 </html>
@@ -86,7 +86,7 @@ def oak():
       <link rel="stylesheet" href="''' + url_for('static', filename='lab1.css') + '''">  
     </body>
     <footer>
-            &copy; Игорь Богачев, ФБИ-23, 3 курс, 2023
+            &copy; Игорь Богачев, ФБИ-23, 3 курс, 2024
         </footer>
 </html>
 '''
@@ -104,7 +104,7 @@ def lab1s():
         <img src="''' + url_for('static', filename='nstu.png') + '''">
     </body>
     <footer>
-            &copy; Игорь Богачев, ФБИ-23, 3 курс, 2023
+            &copy; Игорь Богачев, ФБИ-23, 3 курс, 2024
         </footer>
 </html>
 '''
@@ -136,7 +136,7 @@ def lab1python():
             Это шоу было весьма популярным среди программистов, которые находили в нем параллели с миром компьютерных технологий.
         <img src="''' + url_for('static', filename='python.jpg') + '''">
         <footer>
-            &copy; Игорь Богачев, ФБИ-23, 3 курс, 2023
+            &copy; Игорь Богачев, ФБИ-23, 3 курс, 2024
         </footer>
     </body>
 </html>
@@ -144,10 +144,19 @@ def lab1python():
 
 @app.route('/lab2/example')
 def example():
+    name, lab, group, course = 'Богачев Игорь', 2, 'ФБИ-23', 3
+    fruits = [{'name': 'яблоки', 'price': 100},
+               {'name': 'груши', 'price': 120},
+               {'name': 'апельсины', 'price': 80}, 
+               {'name': 'мандарины', 'price': 95},
+               {'name': 'манго', 'price': 321}
+               ]
     return render_template('example.html',  
-                           lab=1, 
-                           group='ФБИ-23', 
-                           year='3 курс', 
+                           fruits = fruits,
+                           name = name,
+                           lab = lab,
+                           group = group,
+                           course = course,
                            expression1=11*28, 
                            expression2=8452/793, 
                            expression3=45**8)
