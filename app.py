@@ -144,23 +144,23 @@ def lab1python():
 
 @app.route('/lab2/example')
 def example():
-    name, lab, group, course = 'Богачев Игорь', 2, 'ФБИ-23', 3
+    name, lab, group, course = 'Богачев Игорь', 2, 'ФБИ-23', '3 курс'
     fruits = [{'name': 'яблоки', 'price': 100},
                {'name': 'груши', 'price': 120},
                {'name': 'апельсины', 'price': 80}, 
                {'name': 'мандарины', 'price': 95},
                {'name': 'манго', 'price': 321}
                ]
-    books = [{'name': 'Джейн Эйр', 'genre': 'роман', 'pages': 630},
-             {'name': '451 градус по Фаренгейту', 'genre': 'роман-антиутопия', 'pages': 256},
-             {'name': 'Хоббит, или Туда и обратно', 'genre': 'повесть', 'pages': 320},
-             {'name': 'Маленькие женщины', 'genre': 'роман', 'pages': 883},
-             {'name': 'Паутина Шаролтты', 'genre': 'детская книга', 'pages': 240},
-             {'name': 'Великий Гэтсби', 'genre': 'роман', 'pages': 256},
-             {'name': '1984', 'genre': 'роман-антиутопия', 'pages': 328},
-             {'name': 'Дневник Анны Франк', 'genre': 'дневник', 'pages': 512},
-             {'name': 'Гордость и предубеждение', 'genre': 'роман', 'pages': 567},
-             {'name': 'Убить пересмешника', 'genre': 'роман', 'pages': 374}
+    books = [{'author': 'Шарлотта Бронте', 'name': 'Джейн Эйр', 'genre': 'роман', 'pages': 630},
+             {'author': 'Рэй Брэдбери', 'name': '451 градус по Фаренгейту', 'genre': 'роман-антиутопия', 'pages': 256},
+             {'author': 'Джон Р. Р. Толкин', 'name': 'Хоббит, или Туда и обратно', 'genre': 'повесть', 'pages': 320},
+             {'author': 'Луиза Мэй Олкотт', 'name': 'Маленькие женщины', 'genre': 'роман', 'pages': 883},
+             {'author': 'Элвин Брукс Уайт', 'name': 'Паутина Шаролтты', 'genre': 'детская книга', 'pages': 240},
+             {'author': 'Фрэнсис Скотт Фицджеральд', 'name': 'Великий Гэтсби', 'genre': 'роман', 'pages': 256},
+             {'author': 'Джордж Оруэлл', 'name': '1984', 'genre': 'роман-антиутопия', 'pages': 328},
+             {'author': 'Анна Франк', 'name': 'Дневник Анны Франк', 'genre': 'дневник', 'pages': 512},
+             {'author': 'Джейн Остин', 'name': 'Гордость и предубеждение', 'genre': 'роман', 'pages': 567},
+             {'author': 'Харпер Ли', 'name': 'Убить пересмешника', 'genre': 'роман', 'pages': 374}
              ]
     return render_template('example.html',  
                            fruits = fruits,
@@ -168,10 +168,7 @@ def example():
                            name = name,
                            lab = lab,
                            group = group,
-                           course = course,
-                           expression1=11*28, 
-                           expression2=8452/793, 
-                           expression3=45**8)
+                           course = course,)
 
 @app.route('/lab2/')
 def lab():

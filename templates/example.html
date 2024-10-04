@@ -12,9 +12,11 @@
     </header>
 
     <main>
-        11x28 = {{expression1}} <br>
-        8452/793 = {{expression2}} <br>
-        45**8 = {{expression3}} <br>
+        5 + 2 = {{ 5 + 2}} <br>
+        11 * 28 = {{ 11 * 28}}<br>
+        8452/793 = {{8452/793}} <br>
+        45**8 = {{45**8}}
+    
         <ul>
             {% for f in fruits %}
             <li>{{ f.name }}: {{ f.price }} &#x20bd;</li>
@@ -22,9 +24,10 @@
         </ul>
         <ul>
             {% for b in books %}
-            <li>{{ b.name }}: {{ b.genre }}, {{ b.pages }} страниц</li>
+            <li>Автор произведения: {{b.author}}, Название произведения:{{ b.name }}, Жанр: {{ b.genre }}, Количество страниц: {{ b.pages }}</li>
             {% endfor %}
         </ul>
+    
     </main>
 
     <footer>
@@ -34,8 +37,18 @@
         {% else %}
             Анонимус,
         {% endif %}    
-        {{ group }}, 
-        {{ course }}
+        
+        {% if group %}
+            {{group}},
+        {% else %}
+            Посторонний,
+        {% endif %}
+
+        {% if course %}
+            {{ course }},
+        {% else %}
+            Проходимец,
+        {% endif %}
         2024
     </footer>
 </body>
