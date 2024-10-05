@@ -1,8 +1,8 @@
-from flask import Blueprint, url_for, redirect
+from flask import Blueprint, url_for, redirect, render_template
 lab2 = Blueprint('lab2', __name__)
 
 
-@app.route('/lab2/example')
+@lab2.route('/lab2/example')
 def example():
     name, lab, group, course = 'Богачев Игорь', 2, 'ФБИ-23', '3 курс'
     fruits = [{'name': 'яблоки', 'price': 100},
@@ -40,11 +40,11 @@ def example():
                            course=course,)
 
 
-@app.route('/lab2/')
+@lab2.route('/lab2/')
 def lab():
     return render_template('lab2.html')
 
 
-@app.route('/lab2/top_fighters_k1')
+@lab2.route('/lab2/top_fighters_k1')
 def fighters():
     return render_template('top_fighters_k1.html')
