@@ -66,6 +66,7 @@ def lab1s():
     <body>
         <h1>Богачев Игорь Андреевич</h1>
         <img src="''' + url_for('static', filename='nstu.png') + '''">
+        <link rel="stylesheet" href="''' + url_for('static', filename='lab1.css') + '''">
     </body>
     <footer>
             &copy; Игорь Богачев, ФБИ-23, 3 курс, 2024
@@ -100,9 +101,10 @@ def lab1python():
             Язык программирования он и выбрал — Python, что это означало название комик-группы. 
             Это шоу было весьма популярным среди программистов, которые находили в нем параллели с миром компьютерных технологий.
         <img src="''' + url_for('static', filename='python.jpg') + '''">
-        <footer>
-            &copy; Игорь Богачев, ФБИ-23, 3 курс, 2024
-        </footer>
+        <link rel="stylesheet" href="''' + url_for('static', filename='lab1.css') + '''">
     </body>
+    <footer>
+            &copy; Игорь Богачев, ФБИ-23, 3 курс, 2024
+    </footer>
 </html>
 '''
