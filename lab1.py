@@ -4,11 +4,12 @@ lab1 = Blueprint('lab1', __name__)
 
 @lab1.route("/lab1")
 def lab():
-    return """
+    return '''
 <!doctype html>
 <html>
     <head>
         <title>Богачев Игорь Андреевич, лабораторная 1</title>
+        <link rel="stylesheet" href="''' + url_for('static', filename='lab1/main.css') + '''">
     </head>
     <body> 
         <header>
@@ -35,7 +36,7 @@ Werkzeug, а также шаблонизатор Jinja2. Относится к �
         </footer>
     </body>
 </html>
-"""
+'''
 
 
 @lab1.route("/lab1/oak")
@@ -43,9 +44,13 @@ def oak():
     return '''
 <!doctype html>
 <html>
+    <head>
+    <title>Богачев Игорь Андреевич</title>
+        <link rel="stylesheet" href="''' + url_for('static', filename='lab1/main.css') + '''">
+    </head>
     <body> 
       <h1>Дуб</h1>
-      <img src="''' + url_for('static', filename='oak.jpg') + '''">
+      <img src="''' + url_for('static', filename='/lab1/oak.jpg') + '''">
       <link rel="stylesheet" href="''' + url_for('static', filename='lab1.css') + '''">  
     </body>
     <footer>
@@ -62,10 +67,11 @@ def lab1s():
 <html>
     <head>
         <title>Богачев Игорь Андреевич</title>
+        <link rel="stylesheet" href="''' + url_for('static', filename='lab1/main.css') + '''">
     </head>
     <body>
         <h1>Богачев Игорь Андреевич</h1>
-        <img src="''' + url_for('static', filename='nstu.png') + '''">
+        <img src="''' + url_for('static', filename='/lab1/nstu.png') + '''">
         <link rel="stylesheet" href="''' + url_for('static', filename='lab1.css') + '''">
     </body>
     <footer>
@@ -81,7 +87,8 @@ def lab1python():
 <!doctype html>
 <html>
     <head>
-        <title>Богачев Игорь Андреевич, лабораторная 1</title>
+        <title>Богачев Игорь Андреевич</title>
+        <link rel="stylesheet" href="''' + url_for('static', filename='lab1/main.css') + '''">
     </head>
     <body> 
         <header>
@@ -100,7 +107,7 @@ def lab1python():
             Имя ему Гвидо взял из своей любимой развлекательной передачи «Летающий цирк Монти Пайтона». 
             Язык программирования он и выбрал — Python, что это означало название комик-группы. 
             Это шоу было весьма популярным среди программистов, которые находили в нем параллели с миром компьютерных технологий.
-        <img src="''' + url_for('static', filename='python.jpg') + '''">
+        <img src="''' + url_for('static', filename='/lab1/python.jpg') + '''">
         <link rel="stylesheet" href="''' + url_for('static', filename='lab1.css') + '''">
     </body>
     <footer>
