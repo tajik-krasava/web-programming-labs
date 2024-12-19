@@ -1,4 +1,4 @@
-from flask import Blueprint, url_for, redirect, render_template, request, make_response
+from flask import Blueprint, render_template, request, redirect
 lab4 = Blueprint('lab4', __name__)
 
 @lab4.route('/lab4/')
@@ -99,7 +99,9 @@ def tree():
     operation = request.form.get('operation')
 
     if operation == 'cut':
-        tree_count -= 1
+        if tree_count > 0:
+            tree_count -= 1
     elif operation == 'plant':
-        tree_count += 1
-    return render_template('lab4/tree.html', tree_count=tree_count)
+        if tree_count < 10:
+            tree_count += 1
+    return redirect('/lab4/tree')
