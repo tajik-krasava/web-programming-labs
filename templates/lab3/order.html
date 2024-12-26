@@ -3,30 +3,30 @@
 {% block lab %}Лабораторная работа 3{% endblock %}
 
 {% block main %}
-    <h1>Заказ напитка</h1>
-    
-    <form>
-        <div>Напиток:</div>
-        <label>
-            <input type="radio" value="coffee" name="drink" checked>кофе
-        </label>
-        <label>
-            <input type="radio" value="black-tea" name="drink" checked>черный чай
-        </label>
-        <label>
-            <input type="radio" value="green-tea" name="drink" checked>зеленый чай
-        </label>
+<h1>Заказ напитка</h1>
 
-        <div>Добавки:</div>
-        <label>
-            <input type="checkbox" name="milk">молоко
-        </label>
-        <label>
-            <input type="checkbox" name="sugar">сахар
-        </label>
+<form>
+    <div>Напиток:</div>
+    <label>
+        <input type="radio" value="coffee" name="drink" checked>кофе
+    </label>
+    <label>
+        <input type="radio" value="black-tea" name="drink" checked>черный чай
+    </label>
+    <label>
+        <input type="radio" value="green-tea" name="drink" checked>зеленый чай
+    </label>
 
-        <div>
-            <button type="submit">Заказать</button>
-        </div>
-    </form>
+    <div>Добавки:</div>
+    <label>
+        <input type="checkbox" name="milk">молоко
+    </label>
+    <label>
+        <input type="checkbox" name="sugar">сахар
+    </label>
+
+    <div>
+        <button type="submit">Заказать</button>
+    </div>
+</form>
 {% endblock %}
