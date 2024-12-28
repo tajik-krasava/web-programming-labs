@@ -3,6 +3,10 @@
 {% block main %}
     <h1>Создание статьи</h1>
 
+    {% if error %}
+        <div style="color: red;">{{ error }}</div>
+    {% endif %}
+    
     <form method="post">
         <div>
             <label>Название статьи: <input type="text" maxlength="50" name="title"></label>
