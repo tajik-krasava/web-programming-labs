@@ -19,6 +19,38 @@
         position: absolute;
         padding: 20px;
     }
+    .error-message {
+            color: red;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse; 
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd; 
+            padding: 8px; 
+            text-align: left; 
+        }
+        th {
+            background-color: #f2f2f2; 
+            color: #333; 
+        }
+        tr:hover {
+            background-color: #f5f5f5; 
+        }
+        button {
+            margin-top: 20px; 
+            padding: 10px 15px; 
+            background-color: #4CAF50; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+        }
+        button:hover {
+            background-color: #45a049; 
+        }
 </style>
 {% endblock %}
 
@@ -66,6 +98,7 @@
     <label>
         Описание:
         <textarea id="description"></textarea>
+        <div id="description-error" class="error-message"></div>
     </label><br>
 
     <button onclick="sendFilm()">ОК</button>
