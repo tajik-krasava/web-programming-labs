@@ -42,5 +42,18 @@ img{
 .img1 {
     width: 30px;
     height: 30px;
-    margin-left: 10px;
-  }
+    margin-left: 10px; 
+}
+
+.error {
+    color: red;
+}
+
+button {
+    color: white;
+    background-color: grey;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 10px;
+}
+
