@@ -73,7 +73,7 @@ films = [
 
 @lab7.route('/lab7/rest-api/films/', methods=['GET'])
 def get_films():
-    return jsonify (films)
+    return films
 
 @lab7.route('/lab7/rest-api/films/<int:id>', methods=['GET'])
 def get_film(id):
@@ -95,13 +95,17 @@ def put_film(id):
     film = request.get_json()
     if film['description'] == '':
         return {'description': 'Заполните описание'}, 400
+    if not film.get('title_ru'):
+        film['title_ru'] = film['title']
     films[id] = film
     return films[id]
 
 @lab7.route('/lab7/rest-api/films/', methods=['POST'])
 def add_film():
-    film = request.get_json() 
+    film = request.get_json()
     if not film.get('description'): 
-        return {'description': 'Заполните описание'}, 400
+        return {'description': 'Заполните описание'}, 400     
+    if not film.get('title_ru'):
+        film['title_ru'] = film['title']
     films.append(film)  
     return {'id': len(films) - 1}, 201
