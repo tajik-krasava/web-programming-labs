@@ -4,8 +4,7 @@
 
 
 {% block script %}
-<script src="{{ url_for('static', filename='lab7/main.js') }}">
-</script>
+
 <style>
     .modal {
         display: none;
@@ -104,4 +103,6 @@
     <button onclick="sendFilm()">ОК</button>
     <button onclick="cancel()">Отмена</button>
 </div>
+<script src="{{ url_for('static', filename='lab7/main.js') }}">
+</script>
 {% endblock %}

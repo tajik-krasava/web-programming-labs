@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 6{% endblock %}
+
 {% block script %}
 <script>
     function getOfficeList() {
@@ -7,6 +11,7 @@
             'method': 'info',
             'id': Math.round(Math.random() * 1000)
         };
+
         fetch(url, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -29,6 +34,7 @@
                 bookingButton.innerText = 'Зарезервировать';
                 bookingButton.onclick = function() { booking(office.number) };
                 li.appendChild(bookingButton);
+
                 if (office.tenant === '{{ login }}') {
                     const cancelButton = document.createElement('button');
                     cancelButton.innerText = 'Освободить';
@@ -79,6 +85,7 @@
             }
         });
     }
+
     function cancelBooking(officeNumber) {
         const url = '/lab6/json-rpc-api/';
         const json = {
@@ -117,6 +124,7 @@
             }
         });
     }
+
     document.addEventListener('DOMContentLoaded', function() {
         getOfficeList();
     });
