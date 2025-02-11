@@ -1,9 +1,8 @@
-from flask import Blueprint, render_template, request, redirect, session, flash, url_for
+from flask import Blueprint, render_template, request, redirect, session, flash, current_app, url_for
 from flask_login import login_user, login_required, current_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from db import db
 from db.models import users, articles
-
 lab8 = Blueprint('lab8', __name__)
 
 @lab8.route('/lab8/')
@@ -25,15 +24,16 @@ def login():
     if not password_form:
         return render_template('lab8/login.html', error='Пароль не должен быть пустым')
 
-    user = users.query.filter_by(login=login_form).first()
+    user = users.query.filter_by(login = login_form).first()
 
-    if user and check_password_hash(user.password, password_form):
-        login_user(user, remember=bool(remember))
-        return redirect('/lab8/')
+    if user:
+        if check_password_hash(user.password, password_form):
+            login_user(user, remember = bool(remember))
+            return redirect('/lab8/')
 
-    return render_template('lab8/login.html', error='Ошибка входа: логин и/или пароль неверный')
+    return render_template('/lab8/login.html', error = 'Ошибка входа: логин и/или пароль неверный')
 
-@lab8.route('/lab8/register/', methods=['GET', 'POST'])
+@lab8.route('/lab8/register/', methods = ['GET','POST'])
 def register():
     if request.method == 'GET':
         return render_template('lab8/register.html')
@@ -47,12 +47,12 @@ def register():
     if not password_form:
         return render_template('lab8/register.html', error='Пароль не должен быть пустым')
     
-    login_exists = users.query.filter_by(login=login_form).first()
+    login_exists = users.query.filter_by(login = login_form).first ()
     if login_exists:
-        return render_template('lab8/register.html', error='Такой пользователь уже существует')
+        return render_template('lab8/register.html', error = 'Такой пользователь уже существует')
     
-    password_hash = generate_password_hash(password_form)
-    new_user = users(login=login_form, password=password_hash)
+    password_hash = generate_password_hash (password_form)
+    new_user =  users(login = login_form, password = password_hash)
     db.session.add(new_user)
     db.session.commit()
     return redirect('/lab8/')
@@ -64,11 +64,10 @@ def logout():
     session.pop('login', None)
     return redirect('/lab8/')
 
-@lab8.route('/lab8/articles')
+@lab8.route('/lab8/list', methods=['GET'])
 @login_required
 def list_articles():
-    user_articles = articles.query.filter_by(user_id=current_user.id).all()
-    return render_template('lab8/articles.html', articles=user_articles)
+    return render_template('lab8/articles.html')
 
 @lab8.route('/lab8/articles/create', methods=['GET', 'POST'])
 @login_required
@@ -93,7 +92,7 @@ def create_article():
 def edit_article(article_id):
     article = articles.query.get_or_404(article_id)
 
-    if article.user_id != current_user.id:
+    if article.login_id != current_user.id:
         return redirect('/lab8/list')
 
     if request.method == 'GET':
@@ -118,7 +117,7 @@ def edit_article(article_id):
 def delete_article(article_id):
     article = articles.query.get_or_404(article_id)
 
-    if article.user_id != current_user.id:
+    if article.login_id != current_user.id:
         return redirect('/lab8/list')
 
     db.session.delete(article)
@@ -127,18 +126,19 @@ def delete_article(article_id):
 
 @lab8.route('/lab8/public_articles', methods=['GET'])
 def list_public_articles():
-    public_articles = articles.query.filter_by(is_public=True).all()
-    return render_template('lab8/public_articles.html', articles=public_articles)
+    articles = articles.query.filter_by(is_public=True).all()
+    return render_template('lab8/public_articles.html', articles=articles) 
 
 @lab8.route('/lab8/articles/search', methods=['GET'])
 def search_articles():
     query = request.args.get('q')
     if query:
-        search_results = articles.query.filter(
+ 
+        articles = articles.query.filter(
             (articles.title.ilike(f'%{query}%')) | 
             (articles.article_text.ilike(f'%{query}%'))
         ).all()
     else:
-        search_results = []
+        articles = []
 
-    return render_template('lab8/search_results.html', articles=search_results)
+    return render_template('lab8/search_results.html', articles=articles)
