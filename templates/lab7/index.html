@@ -1,108 +1,73 @@
 {% extends "base.html" %}
+{% block lab %}Лабароторная работа 7 {% endblock %}
 
-{% block lab %}Лабораторная работа 7{% endblock %}
-
-
-{% block script %}
-
+{% block script%}
+<script src="{{ url_for('static',filename='lab7/main.js') }}"></script>
 <style>
-    .modal {
-        display: none;
-        z-index: 100;
-        box-shadow: 3px 3px 5px black;
-        background: white;
-        width: 500px;
-        left: 50%;
-        top: 220px;
-        margin-left: -200px;
-        position: absolute;
-        padding: 20px;
-    }
-    .error-message {
-            color: red;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse; 
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd; 
-            padding: 8px; 
-            text-align: left; 
-        }
-        th {
-            background-color: #f2f2f2; 
-            color: #333; 
-        }
-        tr:hover {
-            background-color: #f5f5f5; 
-        }
-        button {
-            margin-top: 20px; 
-            padding: 10px 15px; 
-            background-color: #4CAF50; 
-            color: white; 
-            border: none; 
-            border-radius: 5px; 
-            cursor: pointer; 
-        }
-        button:hover {
-            background-color: #45a049; 
-        }
+
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+</style>
 </style>
 {% endblock %}
 
-
 {% block main %}
-<h1>Список фильмов</h1>
+    <h1>Список фильмов</h1>
 
-<table>
-    <thead>
-        <tr>
-            <th colspan="2">Название</th>
-            <th>Год</th>
-            <th>Действие</th>
-        </tr>
-    </thead>
-    <tbody id="film-list"></tbody>
-</table>
+    <table>
+        <thead>
+            <tr>
+                <th>Название (русское)</th>
+                <th>Название (оригинальное)</th>
+                
+                <th>Год</th>
+                <th>Действие</th>
+            </tr>
+        </thead>
+        <tbody id="film-list"></tbody>
+    </table>
 
-<script>
-    fillFilmList();
-</script>
+    <script>
+        fillFilmList();
+    </script>
 
-<div>
-    <button onclick="addFilm()">Добавить фильм</button>
-</div>
+    <div>
+        <button onclick="addFilm()">Добавить фильм</button>
+    </div>
 
-<div class="modal">
-    <input type="hidden" id="id">
-    <label>
-        Название фильма на русском:
-        <input type="text" id="title_ru">
-    </label><br>
-
-    <label>
-        Оригинальное название фильма<br>
-        <i>(Если фильм русский, то оставьте пустым):</i>
-        <input type="text" id="title">
-    </label><br>
-
-    <label>
-        Год выпуска:
-        <input type="number" id="year">
-    </label><br>
-
-    <label>
-        Описание:
-        <textarea id="description"></textarea>
-        <div id="description-error" class="error-message"></div>
-    </label><br>
-
-    <button onclick="sendFilm()">ОК</button>
-    <button onclick="cancel()">Отмена</button>
-</div>
-<script src="{{ url_for('static', filename='lab7/main.js') }}">
-</script>
+    <div class="modal">
+        <input type="hidden" id="id">
+        <label>
+            Название фильма на русском:
+            <input type="Text" id="title-ru">
+            <div id="title_ru-error" class="error-message"></div>
+        </label><br>
+    
+        <label>
+            Название фильма на оригинальном языке:
+            <i>если фильм русский оставьте пустым</i>
+            <input type="Text" id="title">
+            <div id="title-error" class="error-message"></div>
+        </label><br>
+    
+        <label>
+            Год выпуска:
+            <input type="number" id="year">
+            <div id="year-error" class="error-message"></div>
+        </label><br>
+    
+        <label>
+            Описание:
+            <textarea id="description"></textarea>
+            <div id="description-error" class="error-message"></div>
+        </label><br>
+    
+        <button onclick="sendFilm()">ОК</button>
+        <button onclick="cancel()">Отмена</button>
+    </div>  
 {% endblock %}

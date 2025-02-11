@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Редактирование статьи</h1>
+<form method="POST">
+    <label for="title">Заголовок:</label>
+    <input type="text" id="title" name="title" value="{{ article.title }}" required>
+    <br>
+    <label for="content">Содержание:</label>
+    <textarea id="content" name="content" required>{{ article.content }}</textarea>
+    <br>
+    <button type="submit">Сохранить</button>
+</form>
+{% endblock %}

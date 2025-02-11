@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 8{% endblock %}
+
+{% block main %}
+<h1 class="page-title">Публичные статьи</h1>
+
+<div class="articles-list">
+    <form action="/lab8/search/" method="get" style="display:inline;">
+        <input type="text" name="query" placeholder="Поиск статей">
+        <button type="submit">Поиск</button>
+    </form>
+</li>
+    {% if articles %}
+        {% for article in articles %}
+            <div class="article">
+                <h2 class="articletitle">{{ article.title }}</h2>
+                <p class="article-text">{{ article.article_text }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="empty-message">Нет доступных публичных статей.</p>
+    {% endif %}
+</div>
+{% endblock %}

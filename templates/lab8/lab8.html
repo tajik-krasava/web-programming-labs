@@ -36,12 +36,12 @@
 </style>
 <h1>База знаний</h1>
 <div>
-    Пользователь: 
+    Пользователь:
     <strong>
         {% if login %}
-            {{ login }}
+        {{ login }}
         {% else %}
-            Анонимус
+        Аноним
         {% endif %}
     </strong>
 </div>
@@ -49,6 +49,10 @@
     <div class="block"><a href="/lab8/login">Вход</a></div>
     <div class="block"><a href="/lab8/register">Регистрация</a></div>
     <div class="block"><a href="/lab8/articles">Список статей</a></div>
-    <div class="block"><a href="/lab8/create">Создать статью</a></div>
+    <div class="block"><a href="/lab8/articles/create">Создать статью</a></div>
+    <div class="block"><a href="/lab8/public_articles/">Публичные статьи</a></div>
+    <form action="/lab8/logout" method="get">
+        <button type="submit">Выйти</button>
+    </form>
 </ol>
 {% endblock %}
