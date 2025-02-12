@@ -26,10 +26,12 @@ login_manager.init_app(app)
 def load_users(login_id):
     return users.query.get(int(login_id))
 
+load_dotenv()
+
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'секрет')
 app.config['DB_TYPE'] = os.getenv('DB_TYPE', 'postgres')
 
-if app.config['DB_TYPE']=='postgres':
+if app.config['DB_TYPE'] == 'postgres':
     db_name = 'igor_bogachev_orm'
     db_user = 'postgres'
     db_password = 'postgres'
@@ -37,10 +39,9 @@ if app.config['DB_TYPE']=='postgres':
     host_port = 5432
 
     app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{db_user}:{db_password}@{host_ip}:{host_port}/{db_name}'
-
 else:
     dir_path = path.dirname(path.realpath(__file__))
-    db_path = path.join(dir_path,"igor_bogachev_orm.db")
+    db_path = path.join(dir_path, "igor_bogachev_orm.db")
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
 
 db.init_app(app)
@@ -57,7 +58,6 @@ app.register_blueprint(lab8)
 @app.route("/")
 def go():
     return redirect("/menu", code=302)
-
 
 @app.route("/index")
 def start():

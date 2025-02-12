@@ -1,68 +1,66 @@
 {% extends "base.html" %}
 
-{% block lab %} Лабораторнаая работа 8{% endblock %}
+{% block lab %}Лабораторная работа 8{% endblock %}
 
 {% block main %}
-<head>
-  <title>База знаний</title>
   <style>
     body {
       font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
     }
     .container {
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background-color: #f2f2f2;
     }
     .content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: center;
     }
-
-    button {
-    margin: 10px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    .button {
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .button:hover {
+      background-color: #45a049;
     }
     a {
       text-decoration: none;
-      color: #000;
-    }
-    a:hover {
-      text-decoration: underline;
+      color: inherit;
     }
   </style>
-</head>
-    <h1>База знаний</h1>
-    <div class="container">
+
+  <h1>База знаний</h1>
+  <div class="container">
     <div class="content">
       <p>Добро пожаловать в базу знаний!</p>
-    {% if current_user.is_authenticated %}
-      <p>{{ current_user.login }}!</p>
-      <a href="/lab8/logout"><button>Выйти</button></a>
-      <a href="/lab8/users"><button>Список зарегистрированных пользователей</button></a>
-    {% else %}
-      <p>Анонимный пользователь</p>
-      <a href="/lab8/login"><button>Войти</button></a>
-      <a href="/lab8/register"><button>Регистрация</button></a>
-    {% endif %}
-    
-    <a href="/lab8/list"><button>Список статей</button></a>
-    <a href="/lab8/create"><button>Создать статью</button></a>
-    <a href="/lab8/public_articles"><button>Посмотреть публичные статьи</button></a>
-    <a href="/lab8/search_articles"><button>Фильтрация статьи</button></a>
+      {% if current_user.is_authenticated %}
+        <p>Вы вошли как {{ current_user.login }}!</p>
+        <a href="/lab8/logout" class="button">Выйти</a>
+        <a href="/lab8/users" class="button">Список зарегистрированных пользователей</a>
+      {% else %}
+        <p>Анонимный пользователь</p>
+        <a href="/lab8/login" class="button">Войти</a>
+        <a href="/lab8/register" class="button">Регистрация</a>
+      {% endif %}
+      
+      <a href="/lab8/list" class="button">Список статей</a>
+      <a href="/lab8/create" class="button">Создать статью</a>
+      <a href="/lab8/public_articles" class="button">Посмотреть публичные статьи</a>
+      <a href="/lab8/search_articles" class="button">Фильтрация статей</a>
     </div>
   </div>
 {% endblock %}
