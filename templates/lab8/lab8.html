@@ -1,58 +1,68 @@
 {% extends "base.html" %}
 
-{% block lab %}Лабораторная работа 8{% endblock %}
+{% block lab %} Лабораторнаая работа 8{% endblock %}
 
 {% block main %}
-<style>
-    .link-list {
-        list-style-type: none;
-        padding: 0;
+<head>
+  <title>База знаний</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f2f2f2;
+    }
+    .content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     }
 
-    .block {
-        padding: 15px;
-        margin: 10px 0;
-        border-radius: 8px;
-        border: 1px solid #ddd;
-        background-color: #f4f4f9;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: box-shadow 0.3s ease, transform 0.3s ease;
+    button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     }
-
-    .block:hover {
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-        transform: scale(1.02);
+    a {
+      text-decoration: none;
+      color: #000;
     }
-
-    .block a {
-        text-decoration: none;
-        color: #333;
-        font-weight: bold;
+    a:hover {
+      text-decoration: underline;
     }
-
-    .block a:hover {
-        color: #039433;
-    }
-</style>
-<h1>База знаний</h1>
-<div>
-    Пользователь:
-    <strong>
-        {% if login %}
-        {{ login }}
-        {% else %}
-        Аноним
-        {% endif %}
-    </strong>
-</div>
-<ol class="link-list">
-    <div class="block"><a href="/lab8/login">Вход</a></div>
-    <div class="block"><a href="/lab8/register">Регистрация</a></div>
-    <div class="block"><a href="/lab8/articles">Список статей</a></div>
-    <div class="block"><a href="/lab8/articles/create">Создать статью</a></div>
-    <div class="block"><a href="/lab8/public_articles/">Публичные статьи</a></div>
-    <form action="/lab8/logout" method="get">
-        <button type="submit">Выйти</button>
-    </form>
-</ol>
+  </style>
+</head>
+    <h1>База знаний</h1>
+    <div class="container">
+    <div class="content">
+      <p>Добро пожаловать в базу знаний!</p>
+    {% if current_user.is_authenticated %}
+      <p>{{ current_user.login }}!</p>
+      <a href="/lab8/logout"><button>Выйти</button></a>
+      <a href="/lab8/users"><button>Список зарегистрированных пользователей</button></a>
+    {% else %}
+      <p>Анонимный пользователь</p>
+      <a href="/lab8/login"><button>Войти</button></a>
+      <a href="/lab8/register"><button>Регистрация</button></a>
+    {% endif %}
+    
+    <a href="/lab8/list"><button>Список статей</button></a>
+    <a href="/lab8/create"><button>Создать статью</button></a>
+    <a href="/lab8/public_articles"><button>Посмотреть публичные статьи</button></a>
+    <a href="/lab8/search_articles"><button>Фильтрация статьи</button></a>
+    </div>
+  </div>
 {% endblock %}

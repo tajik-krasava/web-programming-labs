@@ -1,131 +1,21 @@
 {% extends "base.html" %}
-
-{% block head %}
-<style>
-    .page-title {
-        text-align: center;
-        font-size: 34px;
-        margin-bottom: 30px;
-        font-family: 'Georgia', serif;
-        color: #0f3057;
-        text-transform: uppercase;
-    }
-
-    .articles-list {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        margin-top: 25px;
-        padding: 0 15px;
-    }
-
-    .articletitle {
-        font-size: 22px;
-        font-weight: 600;
-        color: #003d5b;
-        margin-bottom: 8px;
-        font-family: 'Arial', sans-serif;
-        border-bottom: 2px solid #00587a;
-        padding-bottom: 5px;
-    }
-
-    .article-text {
-        font-size: 16px;
-        line-height: 1.6;
-        color: #4b4b4b;
-        font-family: 'Verdana', sans-serif;
-        margin-bottom: 12px;
-        text-align: justify;
-    }
-
-    .favorite-badge {
-        background-color: #f7b32b;
-        color: #002a32;
-        padding: 5px 12px;
-        font-size: 13px;
-        font-weight: bold;
-        border-radius: 3px;
-        text-transform: uppercase;
-        margin-bottom: 20px;
-    }
-
-    .article-actions form,
-    .article-actions a {
-        display: inline-block;
-    }
-
-    .article-actions button {
-        background-color: #00587a;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        padding: 8px 12px;
-        cursor: pointer;
-        font-size: 14px;
-    }
-
-    .article-actions button:hover {
-        background-color: #0f3057;
-    }
-
-    .article-actions a {
-        text-decoration: none;
-        color: #00587a;
-        font-weight: bold;
-    }
-
-    .article-actions a:hover {
-        text-decoration: underline;
-    }
-
-    .empty-message {
-        font-size: 18px;
-        color: #4b4b4b;
-        text-align: center;
-        margin-top: 20px;
-    }
-</style>
-{% endblock %}
-
-{% block lab %}
-Лабораторная работа 8
-{% endblock %}
-
+{% block lab %}Лабораторная работа 8{% endblock %}
 {% block main %}
-<h1 class="page-title">Ваши статьи</h1>
 
-<div class="articles-list">
-    {% if articles %}
+    <h1>Список статей</h1>
+    <ul>
         {% for article in articles %}
-            <div class="article">
-                <h2 class="articletitle">
-                    {{ article.title }}
-                    {% if article.is_favorite %}
-                        <span class="favorite-badge">Любимое</span>
-                    {% endif %}
-                </h2>
-                <p class="article-text">{{ article.article_text }}</p>
-                <div class="article-actions">
-                    <form action="/lab8/favorite/{{ article.id }}" method="post" style="display:inline;">
-                        <button type="submit">
-                            {% if article.is_favorite %}
-                                Убрать из любимых
-                            {% else %}
-                                Добавить в любимые
-                            {% endif %}
-                        </button>
-                    </form>
-                    <a href="/lab8/articles/{{ article.id }}/edit">Редактировать</a>
-                    <form action="/lab8/articles/{{ article.id }}/delete" method="post" style="display:inline;">
-                        <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить эту статью?');">
-                            Удалить
-                        </button>
-                    </form>
-                </div>
-            </div>
+            <li>
+                <h2>{{ article.title }}</h2>
+                <p>{{ article.article_text }}</p>
+                <form action="{{ url_for('lab8.delete_article', article_id=article.id) }}" method="POST" style="display:inline;">
+                    <button type="submit">Удалить</button>
+                </form>
+                <a href="{{ url_for('lab8.edit_article', article_id=article.id) }}">Редактировать</a>
+            </li>
         {% endfor %}
-    {% else %}
-        <p class="empty-message">У вас пока нет ни одной статьи. <a href="/lab8/articles/create">Создать статью</a></p>
-    {% endif %}
-</div>
+    </ul>
+    <a href="{{ url_for('lab8.create_article') }}">Создать новую статью</a>
+
+
 {% endblock %}

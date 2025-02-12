@@ -118,7 +118,6 @@ def validate_film(film):
     if not film.get('title_ru'):
         errors['title_ru'] = 'Русское название должно быть заполнено'
 
-      # Преобразуем значение в число
     if not (1895 <= int(film.get('year', 0))):
         errors['year'] = f'Год должен быть от 1895 до {current_year}'
 

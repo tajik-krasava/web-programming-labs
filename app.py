@@ -26,12 +26,12 @@ login_manager.init_app(app)
 def load_users(login_id):
     return users.query.get(int(login_id))
 
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'cекретный секрет')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'секрет')
 app.config['DB_TYPE'] = os.getenv('DB_TYPE', 'postgres')
 
 if app.config['DB_TYPE']=='postgres':
     db_name = 'igor_bogachev_orm'
-    db_user = 'igor_bogachev_orm'
+    db_user = 'postgres'
     db_password = 'postgres'
     host_ip = '127.0.0.1'
     host_port = 5432

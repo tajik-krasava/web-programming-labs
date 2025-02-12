@@ -4,7 +4,71 @@
 {% block script%}
 <script src="{{ url_for('static',filename='lab7/main.js') }}"></script>
 <style>
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
 
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: green;
+    color: white;
+}
+
+button:hover {
+    background-color: #007706;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 30px;
+    top: 200;
+    width: 400px;
+    height: 300px;
+    overflow: auto;
+    background-color: rgba(13, 64, 173, 0.4);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 
 .error-message {
     color: red;
