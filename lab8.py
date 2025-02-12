@@ -26,7 +26,7 @@ def login():
     if not password_form:
         return render_template('lab8/login.html', error='Пароль не должен быть пустым')
 
-    user = Users.query.filter_by(login = login_form).first()
+    user = users.query.filter_by(login = login_form).first()
 
     if user:
         if check_password_hash(user.password, password_form):
@@ -50,12 +50,12 @@ def register():
         return render_template('lab8/register.html', error='Пароль не должен быть пустым')
 
 
-    login_exists = Users.query.filter_by(login = login_form).first()
+    login_exists = users.query.filter_by(login = login_form).first()
     if login_exists:
         return render_template('lab8/register.html', error = 'Такой пользователь уже существует')
     
     password_hash = generate_password_hash (password_form)
-    new_user =  Users(login = login_form, password = password_hash)
+    new_user =  users(login = login_form, password = password_hash)
     db.session.add(new_user)
     db.session.commit()
     login_user(new_user, remember=False)
@@ -72,7 +72,7 @@ def logout():
 @lab8.route('/lab8/list', methods=['GET'])
 @login_required
 def list_articles():
-    articles = Articles.query.all()
+    articles = articles.query.all()
     return render_template('lab8/articles.html', articles=articles)
 
 @lab8.route('/lab8/articles/create', methods=['GET', 'POST'])
@@ -89,7 +89,7 @@ def create_article():
         flash('Название и содержание статьи не должны быть пустыми', 'error')
         return redirect(url_for('lab8.list_articles'))
 
-    new_article = Articles(title=title, article_text=article_text,is_public=is_public, login_id=current_user.id)
+    new_article = articles(title=title, article_text=article_text,is_public=is_public, login_id=current_user.id)
     db.session.add(new_article)
     db.session.commit()
     flash('Статья успешно создана!', 'success')
@@ -98,7 +98,7 @@ def create_article():
 @lab8.route('/lab8/articles/edit/<int:article_id>', methods=['GET', 'POST'])
 @login_required
 def edit_article(article_id):
-    article = Articles.query.get_or_404(article_id)
+    article = articles.query.get_or_404(article_id)
 
     if article.login_id != current_user.id:
         flash('У вас нет прав для редактирования этой статьи', 'error')
@@ -125,7 +125,7 @@ def edit_article(article_id):
 @lab8.route('/lab8/articles/delete/<int:article_id>', methods=['POST'])
 @login_required
 def delete_article(article_id):
-    article = Articles.query.get_or_404(article_id)
+    article = articles.query.get_or_404(article_id)
 
     if article.login_id != current_user.id:
         flash('У вас нет прав для удаления этой статьи', 'error')
@@ -139,7 +139,7 @@ def delete_article(article_id):
 
 @lab8.route('/lab8/public_articles', methods=['GET'])
 def list_public_articles():
-    articles = Articles.query.filter_by(is_public=True).all()
+    articles = articles.query.filter_by(is_public=True).all()
     return render_template('lab8/public_articles.html', articles=articles) 
 
 @lab8.route('/lab8/articles/search', methods=['GET'])
@@ -147,9 +147,9 @@ def search_articles():
     query = request.args.get('q')
     if query:
  
-        articles = Articles.query.filter(
-            (Articles.title.ilike(f'%{query}%')) | 
-            (Articles.article_text.ilike(f'%{query}%'))
+        articles = articles.query.filter(
+            (articles.title.ilike(f'%{query}%')) | 
+            (articles.article_text.ilike(f'%{query}%'))
         ).all()
     else:
         articles = []
