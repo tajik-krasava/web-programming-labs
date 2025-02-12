@@ -3,7 +3,7 @@
 {% block main %}
 <style>
     body {
-        background-color: #f0f8ff; 
+        background-color: #5e9ef3;
         text-align: center;
         padding: 20px;
         position: relative;
@@ -24,8 +24,8 @@
     }
     .snowflake {
         position: absolute;
-        color: #ffffff; 
-        font-size: 1.5em; 
+        color: #ffffff;
+        font-size: 1.5em;
         animation: fall linear infinite;
     }
     @keyframes fall {
@@ -38,7 +38,7 @@
             opacity: 0;
         }
     }
-
+    
     .snowflake:nth-child(1) { left: 10%; animation-duration: 5s; animation-delay: 0s; }
     .snowflake:nth-child(2) { left: 20%; animation-duration: 6s; animation-delay: 1s }
     .snowflake:nth-child(3) { left: 30%; animation-duration: 4s; animation-delay: 2s; }
@@ -50,9 +50,23 @@
     .snowflake:nth-child(9) { left: 90%; animation-duration: 5.5s; animation-delay: 0.8s; }
     .snowflake:nth-child(10) { left: 95%; animation-duration: 4s; animation-delay: 1.7s; }
     </style>
-    <h1>Введите ваше имя</h1>
+    <h1>Выберите подкатегорию</h1>
     <form method="POST">
-        <input type="text" name="name" required placeholder="Ваше имя">
+        {% if session['preference'] == 'вкусное' %}
+            <label>
+                <input type="radio" name="sub_preference" value="сладкое" required> Сладкое
+            </label>
+            <label>
+                <input type="radio" name="sub_preference" value="сытное" required> Сытное
+            </label>
+        {% else %}
+            <label>
+                <input type="radio" name="sub_preference" value="красивое" required> Красивое
+            </label>
+            <label>
+                <input type="radio" name="sub_preference" value="другое" required> Другое
+            </label>
+        {% endif %}
         <button type="submit">Далее</button>
     </form>
     <div class="snowflakes" aria-hidden="true">
